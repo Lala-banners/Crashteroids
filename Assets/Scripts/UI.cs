@@ -10,20 +10,23 @@ public class UI : MonoBehaviour
     public TMP_Text titleText;
     public TMP_Text scoreText;
     public TMP_Text gameOverText;
-    public Button startGameButton;
+    public GameObject startGameButton;
+    public GameObject retryButton;
+    public GameObject playerShip;
     #endregion
 
     #region UI Variables
     private float currentHighScore;
-    public float score;
+    public float scoreCounter;
     #endregion
 
 
     // Start is called before the first frame update
     void Start()
     {
+        playerShip.SetActive(false);
         currentHighScore = 0f;
-        score = 0f;
+        scoreCounter = 0f;
         Time.timeScale = 1;
     }
 
@@ -33,15 +36,22 @@ public class UI : MonoBehaviour
         
     }
 
-
     public void StartGame()
     {
-        
+        titleText.enabled = false;
+        gameOverText.enabled = false;
+        scoreText.enabled = true;
+        startGameButton.SetActive(false);
+        retryButton.SetActive(false);
+        playerShip.SetActive(true);
     }
 
     public void GameOver()
     {
-
+        gameOverText.enabled = true;
+        retryButton.SetActive(true);
+        scoreText.text = "Score: " + scoreCounter;
+        Time.timeScale = 0;
     }
 
     public void WinGame()

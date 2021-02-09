@@ -5,7 +5,7 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     #region Movement
-    public Rigidbody2D rb2D;
+    public Rigidbody rBody;
     private float moveSpeed = 20f;
     private float horizontal;
     private float vertical;
@@ -14,7 +14,7 @@ public class Player : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        rb2D = GetComponent<Rigidbody2D>();
+        rBody = GetComponent<Rigidbody>();
     }
 
     // Update is called once per frame
@@ -30,6 +30,11 @@ public class Player : MonoBehaviour
     {
         horizontal = Input.GetAxisRaw("Horizontal");
         vertical = Input.GetAxisRaw("Vertical");
-        rb2D.velocity = new Vector2(horizontal * moveSpeed, vertical * moveSpeed);
+        rBody.velocity = new Vector2(horizontal * moveSpeed, vertical * moveSpeed);
+    }
+
+    public void ShootLazer()
+    {
+
     }
 }
