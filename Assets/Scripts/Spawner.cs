@@ -4,17 +4,31 @@ using UnityEngine;
 
 public class Spawner : MonoBehaviour
 {
-    public GameObject asteroid;
+    //List of bad guys
+    public List<GameObject> enemyShips = new List<GameObject>();
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    [SerializeField]
+    private GameObject enemyShip;
 
-    // Update is called once per frame
-    void Update()
+    [SerializeField, Tooltip("Time between each enemy spawn")]
+    protected float spawnTime = 5f;
+
+    [SerializeField, Tooltip("How fast enemy ships spawn")]
+    protected float spawnRate = 0f;
+
+    [SerializeField, Tooltip("Spawn enemy ships along x axis at random")]
+    protected float randomX;
+
+    public GameObject SpawnEnemies()
     {
-        
+        if (Time.time > spawnTime)
+        {
+            spawnTime = Time.time + spawnRate;
+            randomX = Random.Range(-10f, 10f); //x axis left and right
+            Vector2 spawnPoint = new Vector2(randomX, transform.position.y);
+            Instantiate(enemyShip, spawnPoint, Quaternion.identity);
+        }
+
+        return enemyShip;
     }
 }

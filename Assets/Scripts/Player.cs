@@ -11,6 +11,11 @@ public class Player : MonoBehaviour
     private float vertical;
     #endregion
 
+    #region Shooting
+    [SerializeField]
+    private GameObject laser;
+    #endregion
+
     // Start is called before the first frame update
     void Start()
     {
@@ -33,8 +38,10 @@ public class Player : MonoBehaviour
         rBody.velocity = new Vector2(horizontal * moveSpeed, vertical * moveSpeed);
     }
 
-    public void ShootLazer()
+    public GameObject SpawnLaser()
     {
-
+        GameObject newLaser = Instantiate(laser);
+        newLaser.SetActive(true);
+        return newLaser;
     }
 }
