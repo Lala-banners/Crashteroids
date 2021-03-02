@@ -6,7 +6,7 @@ using UnityEngine.TestTools;
 public class TestScript
 {
     private CrashteroidsMaster crashteroids;
-     
+
     [SetUp]
     public void SetUp()
     {
@@ -41,7 +41,7 @@ public class TestScript
         Spawner spawner = crashteroids.GetSpawner();
         GameObject enemyShip = spawner.SpawnEnemies();
 
-        GameObject playerShip = crashteroids.GetPlayerShip();
+        GameObject playerShip = crashteroids.GetPlayerShip().gameObject;
         enemyShip.transform.position = playerShip.transform.position;
 
         yield return new WaitForSeconds(0.1f);
@@ -49,20 +49,23 @@ public class TestScript
         Assert.True(crashteroids.isGameOver);
     }
 
+
     [UnityTest]
     public IEnumerator LaserMovesUp()
     {
         //Spawn Laser
-        //Assert.Greater(laser.transform);
-        yield return null;
+        GameObject lazer = crashteroids.GetPlayerShip().SpawnLaser();
+        float initialYPos = lazer.transform.position.y;
+        yield return new WaitForSeconds(0.1f);
 
+        Assert.Greater(lazer.transform.position.y, initialYPos);
     }
 
     [UnityTest]
     public IEnumerator LaserDestroysEnemyShip()
     {
         //Spawn laser
-        GameObject shipGO = crashteroids.GetPlayerShip();
+        GameObject shipGO = crashteroids.GetPlayerShip().gameObject;
         Player playerShip = shipGO.GetComponent<Player>();
         GameObject laser = playerShip.SpawnLaser();
 
@@ -77,5 +80,17 @@ public class TestScript
 
         //We have to use the unity Assert.isNull because Unity deals with nulls differenetly to normal C#
         UnityEngine.Assertions.Assert.IsNull(enemyShip);
+    }
+
+    [UnityTest]
+    public IEnumerator UpdateScore()
+    {
+        GameObject aliens = crashteroids.GetSpawner().SpawnEnemies();
+        aliens.transform.position = Vector3.zero;
+        GameObject lazer = crashteroids.GetPlayerShip().SpawnLaser();
+        lazer.transform.position = Vector3.zero;
+        yield return new WaitForSeconds(0.1f);
+
+        Assert.AreEqual(crashteroids.scoreCounter, 1);
     }
 }

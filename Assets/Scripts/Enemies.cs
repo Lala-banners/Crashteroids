@@ -17,6 +17,11 @@ public class Enemies : MonoBehaviour
     public void MoveBadGuys()
     {
         transform.Translate(Vector3.down * Time.deltaTime); 
+
+        if(transform.position.y < maxY) //If reaches end of the game screen
+        {
+            Destroy(gameObject);
+        }
     }
 
     //THIS DOESNT WORKS GRRR!

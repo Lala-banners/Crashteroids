@@ -1,5 +1,18 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &756467074751993049
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 52759197712577161}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 21c7333141e77dc43837684ef6f28db1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveSpeed: 10
 --- !u!1 &794917314702518927
 GameObject:
   m_ObjectHideFlags: 0
@@ -752,11 +765,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyShips:
   - {fileID: 4013368187182915213, guid: 645162edc4f982040b60b86d9f798aeb, type: 3}
-  - {fileID: 4013368187182915213, guid: 645162edc4f982040b60b86d9f798aeb, type: 3}
-  - {fileID: 4013368187182915213, guid: 645162edc4f982040b60b86d9f798aeb, type: 3}
-  - {fileID: 4013368187182915213, guid: 645162edc4f982040b60b86d9f798aeb, type: 3}
-  - {fileID: 4013368187182915213, guid: 645162edc4f982040b60b86d9f798aeb, type: 3}
-  - {fileID: 4013368187182915213, guid: 645162edc4f982040b60b86d9f798aeb, type: 3}
   enemyShip: {fileID: 4013368187182915213, guid: 645162edc4f982040b60b86d9f798aeb, type: 3}
   spawnTime: 1
   spawnRate: 1
@@ -954,7 +962,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rBody: {fileID: 986031705132505835}
-  laser: {fileID: 5329457928439697733}
+  laserPrefab: {fileID: 5329457928439697733}
   firePoint: {fileID: 3279147125774168171}
 --- !u!65 &620689994386984693
 BoxCollider:
@@ -1457,6 +1465,19 @@ Transform:
   m_Father: {fileID: 6512848834640436598}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4530666557687594225
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8530679462585631332}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 21c7333141e77dc43837684ef6f28db1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveSpeed: 10
 --- !u!1001 &6485535380600865338
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1532,8 +1553,20 @@ PrefabInstance:
       propertyPath: moveSpeed
       value: 5
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2805059975458305907, guid: 594157cf206c44e46b92d73858286f0b, type: 3}
+    - {fileID: 9207623837892741580, guid: 594157cf206c44e46b92d73858286f0b, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 594157cf206c44e46b92d73858286f0b, type: 3}
+--- !u!1 &8530679462585631332 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3198206470471696478, guid: 594157cf206c44e46b92d73858286f0b, type: 3}
+  m_PrefabInstance: {fileID: 6485535380600865338}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &52759197712577161 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6537590744230375603, guid: 594157cf206c44e46b92d73858286f0b, type: 3}
+  m_PrefabInstance: {fileID: 6485535380600865338}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &6607646118955551512 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 122251622480136482, guid: 594157cf206c44e46b92d73858286f0b, type: 3}

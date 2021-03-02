@@ -10,7 +10,7 @@ public class Player : MonoBehaviour
     #endregion
 
     #region Shooting
-    [SerializeField] private GameObject laser;
+    [SerializeField] private GameObject laserPrefab;
     public Transform firePoint;
     #endregion
 
@@ -43,7 +43,7 @@ public class Player : MonoBehaviour
 
     public GameObject SpawnLaser()
     {
-        GameObject newLaser = Instantiate(laser, firePoint.position, Quaternion.identity);
+        GameObject newLaser = Instantiate(laserPrefab, firePoint.position, Quaternion.identity);
         newLaser.SetActive(true);
         return newLaser;
     }

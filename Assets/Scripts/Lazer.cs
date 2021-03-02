@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Lazer : MonoBehaviour
@@ -15,13 +13,7 @@ public class Lazer : MonoBehaviour
         spawner = GetComponent<Spawner>();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        MoveLazer();
-    }
-
-    public void MoveLazer()
+    private void Update()
     {
         //Make laser move
         transform.position += transform.up * moveSpeed * Time.deltaTime;
@@ -43,6 +35,4 @@ public class Lazer : MonoBehaviour
             Destroy(gameObject); //Destroy laser
         }
     }
-
-
 }

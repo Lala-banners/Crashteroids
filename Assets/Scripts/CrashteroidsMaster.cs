@@ -56,9 +56,9 @@ public class CrashteroidsMaster : MonoBehaviour
         return crash.spawner.GetComponent<Spawner>();
     }
 
-    public GameObject GetPlayerShip()
+    public Player GetPlayerShip()
     {
-        return crash.player.GetComponent<GameObject>();
+        return player.GetComponent<Player>();
     }
 
     public static void GameOver()
