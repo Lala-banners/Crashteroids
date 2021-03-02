@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Player : MonoBehaviour
@@ -12,8 +10,8 @@ public class Player : MonoBehaviour
     #endregion
 
     #region Shooting
-    [SerializeField]
-    private GameObject laser;
+    [SerializeField] private GameObject laser;
+    public Transform firePoint;
     #endregion
 
     // Start is called before the first frame update
@@ -26,6 +24,11 @@ public class Player : MonoBehaviour
     void Update()
     {
         ShipFlight();
+
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            SpawnLaser();
+        }
     }
 
     /// <summary>
@@ -40,7 +43,7 @@ public class Player : MonoBehaviour
 
     public GameObject SpawnLaser()
     {
-        GameObject newLaser = Instantiate(laser);
+        GameObject newLaser = Instantiate(laser, firePoint.position, Quaternion.identity);
         newLaser.SetActive(true);
         return newLaser;
     }

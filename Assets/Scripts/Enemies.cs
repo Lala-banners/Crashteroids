@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Enemies : MonoBehaviour
@@ -7,8 +5,8 @@ public class Enemies : MonoBehaviour
     [SerializeField]
     private float maxSpeed = 5f;
 
-    [SerializeField]
-    private float maxY = -5;
+    [SerializeField] private int maxY = -5;
+
 
     // Update is called once per frame
     void Update()
@@ -21,7 +19,7 @@ public class Enemies : MonoBehaviour
         transform.Translate(Vector3.down * Time.deltaTime); 
     }
 
-    //THIS WORKS YAY!
+    //THIS DOESNT WORKS GRRR!
     // OnCollisionEnter is called when this collider/rigidbody has begun touching another rigidbody/collider
     private void OnCollisionEnter(Collision collision)
     {
@@ -30,9 +28,11 @@ public class Enemies : MonoBehaviour
         {
             CrashteroidsMaster.GameOver();
             Destroy(collision.gameObject);
+            print("Player hit!");
         }
+
+        print("Player killed!");
         
-        print("Player hit!");
     }
 
 

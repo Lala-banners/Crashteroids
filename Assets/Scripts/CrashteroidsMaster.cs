@@ -12,7 +12,7 @@ public class CrashteroidsMaster : MonoBehaviour
     private Spawner spawner;
 
     [SerializeField]
-    private Player player;
+    public Player player;
 
     public bool isGameOver = false;
 
