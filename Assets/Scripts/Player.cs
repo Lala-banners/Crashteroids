@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 
 public class Player : MonoBehaviour
 {
@@ -12,6 +13,7 @@ public class Player : MonoBehaviour
     #region Shooting
     [SerializeField] private GameObject laserPrefab;
     public Transform firePoint;
+    public bool canShoot = true;
     #endregion
 
     // Start is called before the first frame update
@@ -31,6 +33,20 @@ public class Player : MonoBehaviour
         }
     }
 
+    public void ShootLaser()
+    {
+        StartCoroutine("Shoot");
+    }
+
+    IEnumerator Shoot()
+    {
+        canShoot = false;
+        GameObject laserShot = SpawnLaser();
+        laserShot.transform.position = firePoint.position;
+        yield return new WaitForSeconds(0.4f);
+        canShoot = true;
+    }
+
     /// <summary>
     /// Player movement 
     /// </summary>
@@ -47,4 +63,6 @@ public class Player : MonoBehaviour
         newLaser.SetActive(true);
         return newLaser;
     }
+
+
 }

@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Collections;
 using UnityEngine;
 
 public class Spawner : MonoBehaviour
@@ -7,27 +8,73 @@ public class Spawner : MonoBehaviour
     public List<GameObject> enemyShips = new List<GameObject>();
 
     [SerializeField]
-    private GameObject enemyShip;
+    private GameObject alien1;
+    [SerializeField]
+    private GameObject alien2;
+    [SerializeField]
+    private GameObject alien3;
+    [SerializeField]
+    private GameObject alien4;
 
-    [SerializeField, Tooltip("Time between each enemy spawn")]
-    protected float spawnTime = 5f;
-
-    [SerializeField, Tooltip("How fast enemy ships spawn")]
-    protected float spawnRate = 0f;
-
-    [SerializeField, Tooltip("Spawn enemy ships along x axis at random")]
-    protected float randomX;
-
-    public GameObject SpawnEnemies()
+    public void BeginSpawning()
     {
-        if (Time.time > spawnTime)
+        StartCoroutine("Spawn");
+    }
+
+    IEnumerator Spawn()
+    {
+        yield return new WaitForSeconds(0.4f);
+
+        SpawnEnemyShips();
+        StartCoroutine("Spawn");
+    }
+
+    public GameObject SpawnEnemyShips()
+    {
+        int random = Random.Range(1, 5);
+        GameObject aliens;
+        switch (random)
         {
-            spawnTime = Time.time + spawnRate;
-            randomX = Random.Range(-10f, 10f); //x axis left and right
-            Vector2 spawnPoint = new Vector2(randomX, transform.position.y);
-            Instantiate(enemyShip, spawnPoint, Quaternion.identity);
+            case 1:
+                aliens = Instantiate(alien1);
+                break;
+            case 2:
+                aliens = Instantiate(alien2);
+                break;
+            case 3:
+                aliens = Instantiate(alien3);
+                break;
+            case 4:
+                aliens = Instantiate(alien4);
+                break;
+            default:
+                aliens = Instantiate(alien1);
+                break;
         }
 
-        return enemyShip;
+        aliens.SetActive(true);
+        float xPos = Random.Range(-8.0f, 8.0f);
+
+        // Spawn asteroid just above top of screen at a random point along x-axis
+        aliens.transform.position = new Vector3(xPos, 7.35f, 0);
+
+        enemyShips.Add(aliens);
+
+        return aliens;
+    }
+
+    public void ClearAsteroids()
+    {
+        foreach (GameObject aliens in enemyShips)
+        {
+            Destroy(aliens);
+        }
+
+        enemyShips.Clear();
+    }
+
+    public void StopSpawning()
+    {
+        StopCoroutine("Spawn");
     }
 }

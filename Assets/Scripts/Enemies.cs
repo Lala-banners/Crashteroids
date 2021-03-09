@@ -24,7 +24,6 @@ public class Enemies : MonoBehaviour
         }
     }
 
-    //THIS DOESNT WORKS GRRR!
     // OnCollisionEnter is called when this collider/rigidbody has begun touching another rigidbody/collider
     private void OnCollisionEnter(Collision collision)
     {
@@ -32,13 +31,7 @@ public class Enemies : MonoBehaviour
         if(collision.gameObject.GetComponent<Player>() != null) //if player ship exists
         {
             CrashteroidsMaster.GameOver();
-            Destroy(collision.gameObject);
-            print("Player hit!");
+            Destroy(gameObject);
         }
-
-        print("Player killed!");
-        
     }
-
-
 }
