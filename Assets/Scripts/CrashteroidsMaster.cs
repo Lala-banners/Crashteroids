@@ -46,7 +46,6 @@ public class CrashteroidsMaster : MonoBehaviour
         spawner.ClearAsteroids();
         gameOverText.enabled = false;
         playerShip.transform.position = new Vector3(0, -3.22f, 0);
-        //playerShip.transform.eulerAngles = new Vector3(90, 180, 0);
     }
 
     public static void GameOver()
