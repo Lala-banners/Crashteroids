@@ -5,7 +5,6 @@ public class Enemies : MonoBehaviour
     public float speed = 5f;
     private int maxY = -5;
 
-
     // Update is called once per frame
     void Update()
     {
@@ -14,7 +13,7 @@ public class Enemies : MonoBehaviour
 
     public void MoveBadGuys()
     {
-        transform.Translate(Vector3.down * Time.deltaTime); 
+        transform.Translate(Vector3.up * Time.deltaTime); 
 
         if(transform.position.y < maxY) //If reaches end of the game screen
         {

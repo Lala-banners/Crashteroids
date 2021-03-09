@@ -28,24 +28,32 @@ public class CrashteroidsMaster : MonoBehaviour
     void Start()
     {
         crash = this;
-        isGameOver = false;
-        playerShip.SetActive(false);
-        Time.timeScale = 1;
-        scoreText.enabled = true;
-        scoreCounter = 0f;
-
-        StartGame();
+        titleText.enabled = true;
+        gameOverText.enabled = false;
+        scoreText.enabled = false;
+        startGameButton.SetActive(true);
     }
 
     public void StartGame()
     {
-        crash.spawner.BeginSpawning();
-        crash.isGameOver = false;
-        crash.titleText.enabled = false;
-        crash.gameOverText.enabled = false;
-        crash.startGameButton.SetActive(false);
-        crash.retryButton.SetActive(false);
-        crash.playerShip.SetActive(true);
+        isGameOver = false;
+        titleText.enabled = false;
+        startGameButton.SetActive(false);
+        scoreCounter = 0;
+        scoreText.text = "Score: " + scoreCounter;
+        scoreText.enabled = true;
+        spawner.BeginSpawning();
+        spawner.ClearAsteroids();
+        gameOverText.enabled = false;
+    }
+
+    public static void GameOver()
+    {
+        crash.titleText.enabled = true;
+        crash.startGameButton.SetActive(true);
+        crash.isGameOver = true;
+        crash.spawner.StopSpawning();
+        crash.gameOverText.enabled = true;
     }
 
     public static void BadShipDestroyed()
@@ -62,27 +70,5 @@ public class CrashteroidsMaster : MonoBehaviour
     public Player GetPlayerShip()
     {
         return player.GetComponent<Player>();
-    }
-
-    public static void GameOver()
-    {
-        crash.spawner.StopSpawning();
-        crash.gameOverText.enabled = true;
-        crash.retryButton.SetActive(true);
-        crash.isGameOver = true;
-        Time.timeScale = 0;
-    }
-
-    public void Retry()
-    {
-        crash.isGameOver = false;
-        crash.titleText.enabled = false;
-        crash.gameOverText.enabled = false;
-        crash.startGameButton.SetActive(false);
-        crash.retryButton.SetActive(false);
-        crash.playerShip.SetActive(true);
-        Time.timeScale = 1;
-        SceneManager.LoadScene(0); //reload scene
-        spawner.ClearAsteroids();
     }
 }

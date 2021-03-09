@@ -53,10 +53,10 @@ public class Spawner : MonoBehaviour
         }
 
         aliens.SetActive(true);
-        float xPos = Random.Range(-8.0f, 8.0f);
+        float xPos = Random.Range(-11.0f, 11.0f);
 
         // Spawn asteroid just above top of screen at a random point along x-axis
-        aliens.transform.position = new Vector3(xPos, 7.35f, 0);
+        aliens.transform.position = new Vector3(xPos, 10.0f, 0);
 
         enemyShips.Add(aliens);
 

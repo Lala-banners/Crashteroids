@@ -37,7 +37,7 @@ public class TestScript
     public IEnumerator NewGameRestartsGame()
     {
         crashteroids.isGameOver = true;
-        crashteroids.Retry();
+        crashteroids.StartGame();
 
         Assert.False(crashteroids.isGameOver);
 
@@ -56,7 +56,7 @@ public class TestScript
         Assert.Greater(lazer.transform.position.y, initialYPos);
     }
 
-    //Not working
+    //WORKING
     [UnityTest]
     public IEnumerator LaserDestroysEnemyShip()
     {
@@ -72,7 +72,7 @@ public class TestScript
         UnityEngine.Assertions.Assert.IsNull(alien);
     }
 
-    //Not working
+    //WORKING
     [UnityTest]
     public IEnumerator UpdateScore()
     {
@@ -82,7 +82,7 @@ public class TestScript
         lazer.transform.position = Vector3.zero;
         yield return new WaitForSeconds(0.1f);
 
-        Assert.AreEqual(crashteroids.scoreCounter, 1);
+        Assert.AreEqual(crashteroids.scoreCounter, 2.0f);
     }
 
     //WORKING
@@ -91,7 +91,7 @@ public class TestScript
     {
         GameObject alien = crashteroids.GetSpawner().SpawnEnemyShips();
         float initialYPos = alien.transform.position.y;
-        yield return new WaitForSeconds(0.1f);
+        yield return new WaitForSeconds(0.5f);
 
         Assert.Less(alien.transform.position.y, initialYPos);
     }

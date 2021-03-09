@@ -10,7 +10,7 @@ public class Lazer : MonoBehaviour
     private void Update()
     {
         //Make laser move
-        transform.Translate(Vector3.up * Time.deltaTime * 5);
+        transform.Translate(Vector3.up * Time.deltaTime * moveSpeed);
 
         if (transform.position.y > 10)
         {
