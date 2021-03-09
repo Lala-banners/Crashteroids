@@ -4,23 +4,15 @@ public class Lazer : MonoBehaviour
 {
     //THIS WORKS!
 
-    private Spawner spawner;
+    [SerializeField] private Spawner spawner;
     [SerializeField] private float moveSpeed = 10f;
-    private new SpriteRenderer renderer;
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        renderer = GetComponent<SpriteRenderer>();
-        spawner = GetComponent<Spawner>();
-    }
 
     private void Update()
     {
         //Make laser move
-        transform.position += transform.up * moveSpeed * Time.deltaTime;
+        transform.Translate(Vector3.up * Time.deltaTime * 5);
 
-        if (!renderer.isVisible) //If the lazer disappears off screen, then destroy it 
+        if (transform.position.y > 10)
         {
             Destroy(gameObject);
         }
@@ -29,12 +21,12 @@ public class Lazer : MonoBehaviour
     // OnCollisionEnter is called when this collider/rigidbody has begun touching another rigidbody/collider
     private void OnCollisionEnter(Collision collision)
     {
-        if(collision.gameObject.GetComponent<Enemies>() != null)
+        if(collision.gameObject.TryGetComponent<Enemies>(out Enemies aliens))
         {
             CrashteroidsMaster.BadShipDestroyed(); //Update score
-            spawner.enemyShips.Remove(collision.gameObject); //Remove alien ship from spawner
-            Destroy(collision.gameObject); //Destroy enemy
-            Destroy(gameObject); //Destroy laser
+            Destroy(gameObject); //Destroy lazer
+            spawner.enemyShips.Remove(collision.gameObject); //Remove enemy ship from list
+            Destroy(collision.gameObject); //Destroy enemy ship
         }
     }
 }

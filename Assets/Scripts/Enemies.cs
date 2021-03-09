@@ -2,10 +2,8 @@ using UnityEngine;
 
 public class Enemies : MonoBehaviour
 {
-    [SerializeField]
-    private float maxSpeed = 5f;
-
-    [SerializeField] private int maxY = -5;
+    public float speed = 5f;
+    private int maxY = -5;
 
 
     // Update is called once per frame
