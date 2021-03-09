@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 4013368187182915210}
   - component: {fileID: 3561859286502457786}
   - component: {fileID: 4573688882426004187}
+  - component: {fileID: 5311427400525574135}
   m_Layer: 0
   m_Name: Alien Ship
   m_TagString: Untagged
@@ -114,3 +115,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxSpeed: 5
   maxY: -5
+--- !u!65 &5311427400525574135
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4013368187182915213}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 16, y: 16, z: 0.2}
+  m_Center: {x: 0, y: 0, z: 0}

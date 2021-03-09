@@ -8,8 +8,6 @@ public class Lazer : MonoBehaviour
     [SerializeField] private float moveSpeed = 10f;
     private new SpriteRenderer renderer;
 
-
-
     // Start is called before the first frame update
     void Start()
     {

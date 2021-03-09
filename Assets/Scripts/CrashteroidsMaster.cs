@@ -33,10 +33,13 @@ public class CrashteroidsMaster : MonoBehaviour
         Time.timeScale = 1;
         scoreText.enabled = true;
         scoreCounter = 0f;
+
+        StartGame();
     }
 
     public void StartGame()
     {
+        crash.spawner.BeginSpawning();
         crash.isGameOver = false;
         crash.titleText.enabled = false;
         crash.gameOverText.enabled = false;
@@ -63,9 +66,11 @@ public class CrashteroidsMaster : MonoBehaviour
 
     public static void GameOver()
     {
+        crash.spawner.StopSpawning();
         crash.gameOverText.enabled = true;
         crash.retryButton.SetActive(true);
         crash.isGameOver = true;
+        Time.timeScale = 0;
     }
 
     public void Retry()
@@ -78,5 +83,6 @@ public class CrashteroidsMaster : MonoBehaviour
         crash.playerShip.SetActive(true);
         Time.timeScale = 1;
         SceneManager.LoadScene(0); //reload scene
+        spawner.ClearAsteroids();
     }
 }
