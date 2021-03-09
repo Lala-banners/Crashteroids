@@ -21,7 +21,7 @@ public class TestScript
         Object.Destroy(crashteroids.gameObject);
     }
 
-    //Not working
+    //WORKING
     [UnityTest]
     public IEnumerator GameOverOnEnemyShipCollision()
     {
@@ -32,7 +32,7 @@ public class TestScript
         Assert.True(crashteroids.isGameOver);
     }
 
-    //Not working
+    //WORKING
     [UnityTest]
     public IEnumerator NewGameRestartsGame()
     {
@@ -44,7 +44,7 @@ public class TestScript
         yield return null;
     }
 
-    //Not working
+    //WORKING
     [UnityTest]
     public IEnumerator LaserMovesUp()
     {
@@ -85,7 +85,7 @@ public class TestScript
         Assert.AreEqual(crashteroids.scoreCounter, 1);
     }
 
-    //Not working
+    //WORKING
     [UnityTest]
     public IEnumerator EnemyShipsMoveDown()
     {
